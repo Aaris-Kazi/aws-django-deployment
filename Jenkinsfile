@@ -6,7 +6,6 @@ pipeline {
         CONTAINER_NAME = "aws-django-deployment"
         PORT = "80"
         IMAGE_TAG = "v${BUILD_NUMBER}"
-        MACHINE_IP="192.168.0.114"
     }
 
     stages {
@@ -25,14 +24,11 @@ pipeline {
         }
 
 
-        stage('Build JAR') {
+        stage('Debug') {
             steps {
-                sh '''
-                set -a
-                . /home/warhero/.env
-                set +a
-                mvn clean package
-                '''
+                sh 'ls -la'
+                sh 'find . -name requirements.txt'
+                sh 'find . -name Dockerfile'
             }
         }
 
